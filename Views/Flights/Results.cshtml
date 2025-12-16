@@ -1,0 +1,234 @@
+@model TravelSearchApp.Models.FlightSearchResult
+@{
+    ViewData["Title"] = "Resultados de Búsqueda";
+}
+
+<div class="container mt-4">
+    <!-- Resumen de búsqueda -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                @Model.SearchSummary
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.HasResults)
+    {
+        <!-- No hay resultados -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-plane-slash fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No se encontraron vuelos</h4>
+                        <p class="text-muted">Lo sentimos, no hay vuelos disponibles para los criterios de búsqueda especificados.</p>
+                        <a asp-action="Search" class="btn btn-primary">
+                            <i class="fas fa-search me-2"></i>Nueva búsqueda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- Vuelos de ida -->
+        @if (Model.OutboundFlights.Any())
+        {
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="mb-3">
+                        <i class="fas fa-plane-departure me-2"></i>
+                        Vuelos de ida: @Model.SearchCriteria.Origin → @Model.SearchCriteria.Destination
+                    </h3>
+                    <div class="row">
+                        @foreach (var flight in Model.OutboundFlights)
+                        {
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card h-100 flight-card">
+                                    <div class="card-header bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <strong>@flight.FlightNumber</strong>
+                                            <span class="badge bg-secondary">@flight.Airline</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">Salida</small>
+                                                <div><strong>@flight.DepartureTime.ToString("HH:mm")</strong></div>
+                                                <div class="text-muted">@flight.Origin</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Llegada</small>
+                                                <div><strong>@flight.ArrivalTime.ToString("HH:mm")</strong></div>
+                                                <div class="text-muted">@flight.Destination</div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <small class="text-muted">Duración</small>
+                                                <div>@flight.Duration.ToString(@"h\:mm")</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Tipo</small>
+                                                <div>@(flight.HasStops ? "Con escalas" : "Directo")</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <small class="text-muted">Asientos disponibles</small>
+                                                <div class="@(flight.AvailableSeats < 10 ? "text-warning" : "text-success")">
+                                                    @flight.AvailableSeats
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="h5 text-primary mb-0">@flight.Price.ToString("C")</span>
+                                                <small class="text-muted">por persona</small>
+                                            </div>
+                                            <a asp-action="Details" asp-route-id="@flight.Id" class="btn btn-outline-primary btn-sm">
+                                                Ver detalles
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Vuelos de vuelta -->
+        @if (Model.SearchCriteria.IsRoundTrip && Model.ReturnFlights.Any())
+        {
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="mb-3">
+                        <i class="fas fa-plane-arrival me-2"></i>
+                        Vuelos de vuelta: @Model.SearchCriteria.Destination → @Model.SearchCriteria.Origin
+                    </h3>
+                    <div class="row">
+                        @foreach (var flight in Model.ReturnFlights)
+                        {
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card h-100 flight-card">
+                                    <div class="card-header bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <strong>@flight.FlightNumber</strong>
+                                            <span class="badge bg-secondary">@flight.Airline</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">Salida</small>
+                                                <div><strong>@flight.DepartureTime.ToString("HH:mm")</strong></div>
+                                                <div class="text-muted">@flight.Origin</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Llegada</small>
+                                                <div><strong>@flight.ArrivalTime.ToString("HH:mm")</strong></div>
+                                                <div class="text-muted">@flight.Destination</div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <small class="text-muted">Duración</small>
+                                                <div>@flight.Duration.ToString(@"h\:mm")</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Tipo</small>
+                                                <div>@(flight.HasStops ? "Con escalas" : "Directo")</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <small class="text-muted">Asientos disponibles</small>
+                                                <div class="@(flight.AvailableSeats < 10 ? "text-warning" : "text-success")">
+                                                    @flight.AvailableSeats
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="h5 text-primary mb-0">@flight.Price.ToString("C")</span>
+                                                <small class="text-muted">por persona</small>
+                                            </div>
+                                            <a asp-action="Details" asp-route-id="@flight.Id" class="btn btn-outline-primary btn-sm">
+                                                Ver detalles
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.SearchCriteria.IsRoundTrip && !Model.ReturnFlights.Any())
+        {
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        No se encontraron vuelos de vuelta para la fecha seleccionada.
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <!-- Botón para nueva búsqueda -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a asp-action="Search" class="btn btn-secondary">
+                <i class="fas fa-search me-2"></i>Nueva búsqueda
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .flight-card {
+            transition: transform 0.2s ease-in-out;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .flight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .badge {
+            font-size: 0.75em;
+        }
+        
+        .text-primary {
+            color: #0d6efd !important;
+        }
+        
+        hr {
+            margin: 0.75rem 0;
+            opacity: 0.3;
+        }
+    </style>
+}

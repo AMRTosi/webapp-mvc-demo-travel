@@ -1,0 +1,74 @@
+[
+  {
+    "Code": "MAD",
+    "Name": "Aeropuerto Adolfo Suárez Madrid-Barajas",
+    "City": "Madrid",
+    "Country": "España"
+  },
+  {
+    "Code": "BCN",
+    "Name": "Aeropuerto Josep Tarradellas Barcelona-El Prat",
+    "City": "Barcelona",
+    "Country": "España"
+  },
+  {
+    "Code": "LHR",
+    "Name": "London Heathrow Airport",
+    "City": "Londres",
+    "Country": "Reino Unido"
+  },
+  {
+    "Code": "CDG",
+    "Name": "Aéroport Paris-Charles de Gaulle",
+    "City": "París",
+    "Country": "Francia"
+  },
+  {
+    "Code": "FCO",
+    "Name": "Aeroporto di Roma-Fiumicino",
+    "City": "Roma",
+    "Country": "Italia"
+  },
+  {
+    "Code": "FRA",
+    "Name": "Frankfurt Airport",
+    "City": "Frankfurt",
+    "Country": "Alemania"
+  },
+  {
+    "Code": "AMS",
+    "Name": "Amsterdam Airport Schiphol",
+    "City": "Amsterdam",
+    "Country": "Países Bajos"
+  },
+  {
+    "Code": "LIS",
+    "Name": "Aeroporto de Lisboa",
+    "City": "Lisboa",
+    "Country": "Portugal"
+  },
+  {
+    "Code": "VIE",
+    "Name": "Vienna International Airport",
+    "City": "Viena",
+    "Country": "Austria"
+  },
+  {
+    "Code": "ZUR",
+    "Name": "Zurich Airport",
+    "City": "Zúrich",
+    "Country": "Suiza"
+  },
+  {
+    "Code": "MUC",
+    "Name": "Munich Airport",
+    "City": "Múnich",
+    "Country": "Alemania"
+  },
+  {
+    "Code": "ARN",
+    "Name": "Stockholm Arlanda Airport",
+    "City": "Estocolmo",
+    "Country": "Suecia"
+  }
+]

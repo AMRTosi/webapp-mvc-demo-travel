@@ -1,0 +1,164 @@
+@model TravelSearchApp.Models.Flight
+@{
+    ViewData["Title"] = $"Detalles del Vuelo {Model.FlightNumber}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title mb-0">
+                        <i class="fas fa-plane me-2"></i>
+                        Detalles del Vuelo @Model.FlightNumber
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <!-- Información básica del vuelo -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="text-primary">Información del Vuelo</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Número de vuelo:</strong></td>
+                                    <td>@Model.FlightNumber</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Aerolínea:</strong></td>
+                                    <td>@Model.Airline</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tipo de aeronave:</strong></td>
+                                    <td>@Model.AircraftType</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tipo de vuelo:</strong></td>
+                                    <td>@(Model.HasStops ? "Con escalas" : "Vuelo directo")</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-primary">Precio y Disponibilidad</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Precio:</strong></td>
+                                    <td class="h5 text-success">@Model.Price.ToString("C")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Moneda:</strong></td>
+                                    <td>@Model.Currency</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Asientos disponibles:</strong></td>
+                                    <td class="@(Model.AvailableSeats < 10 ? "text-warning" : "text-success")">
+                                        @Model.AvailableSeats
+                                        @if (Model.AvailableSeats < 10)
+                                        {
+                                            <i class="fas fa-exclamation-triangle ms-1" title="Pocos asientos disponibles"></i>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Duración:</strong></td>
+                                    <td>@Model.Duration.ToString(@"h\:mm") horas</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Información de horarios -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="text-primary mb-3">Horarios de Vuelo</h5>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-plane-departure fa-2x text-primary mb-2"></i>
+                                            <h6 class="card-title">Salida</h6>
+                                            <p class="card-text">
+                                                <strong>@Model.Origin</strong><br>
+                                                <span class="h4">@Model.DepartureTime.ToString("HH:mm")</span><br>
+                                                <small class="text-muted">@Model.DepartureTime.ToString("dd/MM/yyyy")</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-arrow-right fa-2x text-muted"></i>
+                                        <div class="mt-2">
+                                            <small class="text-muted">@Model.Duration.ToString(@"h\:mm")</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-plane-arrival fa-2x text-success mb-2"></i>
+                                            <h6 class="card-title">Llegada</h6>
+                                            <p class="card-text">
+                                                <strong>@Model.Destination</strong><br>
+                                                <span class="h4">@Model.ArrivalTime.ToString("HH:mm")</span><br>
+                                                <small class="text-muted">@Model.ArrivalTime.ToString("dd/MM/yyyy")</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <a href="javascript:history.back()" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i>Volver
+                                </a>
+                                <div>
+                                    <button class="btn btn-success" disabled>
+                                        <i class="fas fa-shopping-cart me-2"></i>Reservar
+                                        <small>(Próximamente)</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+        }
+        
+        .table td {
+            padding: 0.5rem 0;
+            vertical-align: middle;
+        }
+        
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+        
+        .fa-arrow-right {
+            animation: pulse 2s infinite;
+        }
+        
+        @@keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+}

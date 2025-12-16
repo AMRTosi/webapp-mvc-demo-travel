@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido a TravelSearchApp</h1>
+    <p class="lead">Su plataforma de búsqueda de vuelos y viajes</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <i class="fas fa-plane fa-3x text-primary mb-3"></i>
+                    <h4 class="card-title">Buscar Vuelos</h4>
+                    <p class="card-text">Encuentra los mejores vuelos para tu próximo viaje. Compara precios, horarios y aerolíneas.</p>
+                    <a asp-controller="Flights" asp-action="Search" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search me-2"></i>Buscar Vuelos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-clock fa-2x text-info mb-3"></i>
+                    <h5 class="card-title">Búsqueda Rápida</h5>
+                    <p class="card-text">Interface intuitiva para encontrar vuelos en segundos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-money-bill-wave fa-2x text-success mb-3"></i>
+                    <h5 class="card-title">Mejores Precios</h5>
+                    <p class="card-text">Compara precios de múltiples aerolíneas para obtener las mejores ofertas.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-shield-alt fa-2x text-warning mb-3"></i>
+                    <h5 class="card-title">Reserva Segura</h5>
+                    <p class="card-text">Plataforma segura y confiable para todas tus reservas de viaje.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

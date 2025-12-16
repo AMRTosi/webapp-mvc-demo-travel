@@ -1,0 +1,286 @@
+@model TravelSearchApp.Models.FlightSearchCriteria
+@{
+    ViewData["Title"] = "Búsqueda de Vuelos";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title mb-0">
+                        <i class="fas fa-plane me-2"></i>Buscar Vuelos
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Search" method="post" id="flightSearchForm" novalidate>
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Tipo de viaje -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="IsRoundTrip" id="roundTrip" value="true" 
+                                           @(Model.IsRoundTrip ? "checked" : "") />
+                                    <label class="form-check-label" for="roundTrip">
+                                        Ida y vuelta
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="IsRoundTrip" id="oneWay" value="false"
+                                           @(!Model.IsRoundTrip ? "checked" : "") />
+                                    <label class="form-check-label" for="oneWay">
+                                        Solo ida
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Origen y Destino -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Origin" class="form-label required">Origen</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-plane-departure"></i></span>
+                                    <input asp-for="Origin" class="form-control airport-autocomplete" 
+                                           placeholder="Seleccione aeropuerto de origen" autocomplete="off" />
+                                </div>
+                                <span asp-validation-for="Origin" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Destination" class="form-label required">Destino</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-plane-arrival"></i></span>
+                                    <input asp-for="Destination" class="form-control airport-autocomplete" 
+                                           placeholder="Seleccione aeropuerto de destino" autocomplete="off" />
+                                </div>
+                                <span asp-validation-for="Destination" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Fechas -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="DepartureDate" class="form-label required">Fecha de ida</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    <input asp-for="DepartureDate" class="form-control" type="date" />
+                                </div>
+                                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6" id="returnDateContainer">
+                                <label asp-for="ReturnDate" class="form-label">Fecha de vuelta</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    <input asp-for="ReturnDate" class="form-control" type="date" />
+                                </div>
+                                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Pasajeros -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Passengers" class="form-label">Número de pasajeros</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                    <select asp-for="Passengers" class="form-control">
+                                        @for (int i = 1; i <= 9; i++)
+                                        {
+                                            <option value="@i" selected="@(Model.Passengers == i)">@i pasajero@(i > 1 ? "s" : "")</option>
+                                        }
+                                    </select>
+                                </div>
+                                <span asp-validation-for="Passengers" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Mensajes de error generales -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Botón de búsqueda -->
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100" id="searchButton">
+                                    <i class="fas fa-search me-2"></i>
+                                    <span class="button-text">Buscar Vuelos</span>
+                                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                                    <span class="loading-text d-none">Buscando...</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    
+    <script>
+        $(document).ready(function() {
+            // Configurar autocompletado para aeropuertos
+            $('.airport-autocomplete').autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetAirports", "Flights")',
+                        data: { term: request.term },
+                        success: function(data) {
+                            response(data);
+                        },
+                        error: function() {
+                            response([]);
+                        }
+                    });
+                },
+                minLength: 2,
+                delay: 300,
+                select: function(event, ui) {
+                    $(this).val(ui.item.code);
+                    return false;
+                },
+                focus: function(event, ui) {
+                    return false; // Prevenir que se actualice el campo durante el hover
+                }
+            }).autocomplete("instance")._renderItem = function(ul, item) {
+                return $("<li>")
+                    .append("<div><strong>" + item.name + " (" + item.code + ")</strong><br/><small>" + item.city + ", " + item.country + "</small></div>")
+                    .appendTo(ul);
+            };
+
+            // Manejar cambio de tipo de viaje
+            $('input[name="IsRoundTrip"]').change(function() {
+                if ($(this).val() === 'false') {
+                    $('#returnDateContainer').hide();
+                    $('#ReturnDate').prop('required', false);
+                } else {
+                    $('#returnDateContainer').show();
+                    $('#ReturnDate').prop('required', false); // Opcional para ida y vuelta
+                }
+            });
+
+            // Inicializar visibilidad de fecha de vuelta
+            if (!$('#roundTrip').is(':checked')) {
+                $('#returnDateContainer').hide();
+            }
+
+            // Validación de fechas
+            $('#DepartureDate').change(function() {
+                var today = new Date().toISOString().split('T')[0];
+                if ($(this).val() < today) {
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            // Indicador de carga en el formulario
+            $('#flightSearchForm').submit(function() {
+                var $button = $('#searchButton');
+                $button.prop('disabled', true);
+                $button.find('.button-text').addClass('d-none');
+                $button.find('.spinner-border').removeClass('d-none');
+                $button.find('.loading-text').removeClass('d-none');
+            });
+
+            // Validación personalizada para origen y destino diferentes
+            $('#flightSearchForm').submit(function(e) {
+                var origin = $('#Origin').val();
+                var destination = $('#Destination').val();
+                
+                if (origin && destination && origin === destination) {
+                    e.preventDefault();
+                    alert('El origen y destino deben ser diferentes.');
+                    $('#searchButton').prop('disabled', false);
+                    $('#searchButton').find('.button-text').removeClass('d-none');
+                    $('#searchButton').find('.spinner-border').addClass('d-none');
+                    $('#searchButton').find('.loading-text').addClass('d-none');
+                }
+            });
+
+            // Establecer fecha mínima para hoy
+            var today = new Date().toISOString().split('T')[0];
+            $('#DepartureDate').attr('min', today);
+            $('#ReturnDate').attr('min', today);
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .required::after {
+            content: " *";
+            color: red;
+        }
+        
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1050;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .ui-menu-item {
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .ui-menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ui-menu-item div {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .ui-menu-item:hover div,
+        .ui-menu-item.ui-state-active div,
+        .ui-menu-item.ui-state-focus div {
+            background-color: #e3f2fd !important;
+            color: #1976d2 !important;
+        }
+        
+        .ui-menu-item div strong {
+            color: #212529;
+            font-weight: 600;
+        }
+        
+        .ui-menu-item:hover div strong,
+        .ui-menu-item.ui-state-active div strong,
+        .ui-menu-item.ui-state-focus div strong {
+            color: #1976d2 !important;
+        }
+        
+        .ui-menu-item div small {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+        
+        .ui-menu-item:hover div small,
+        .ui-menu-item.ui-state-active div small,
+        .ui-menu-item.ui-state-focus div small {
+            color: #1565c0 !important;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+        }
+        
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
+}

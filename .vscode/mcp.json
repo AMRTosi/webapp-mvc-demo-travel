@@ -1,0 +1,24 @@
+{
+  "inputs": [
+    {
+      "id": "ado_org",
+      "type": "promptString",
+      "description": "Avanade Azure DevOps Organization"
+    }
+  ],
+  "servers": {
+    "ado": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp@next", "${input:ado_org}"]
+    },
+    "mssql": {
+      "type": "stdio",
+      // C:\source\mcp\SQL-AI-samples-main\SQL-AI-samples-main\MssqlMcp\dotnet\MssqlMcp\bin\Debug\net8.0
+      "command": "C:\\source\\mcp\\SQL-AI-samples-main\\SQL-AI-samples-main\\MssqlMcp\\dotnet\\MssqlMcp\\bin\\Debug\\net8.0\\MssqlMcp.exe",
+      "env": {
+        "CONNECTION_STRING": "Server=.;Database=WideWorldImporters;Trusted_Connection=True;TrustServerCertificate=True"
+      }
+    }
+  }
+}
