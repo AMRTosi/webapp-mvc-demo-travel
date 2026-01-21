@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+
+namespace Utils
+{
+    public static class Functions
+    {
+        const string regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        public static List<int> GetFirst20Primes()
+        {
+            var primes = new List<int>();
+            int num = 2;
+            while (primes.Count < 20)
+            {
+                bool isPrime = true;
+                for (int i = 2; i * i <= num; i++)
+                {
+                    if (num % i == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime)
+                    primes.Add(num);
+                num++;
+            }
+            return primes;
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public double CalculatePrice(Product p, User u, Date d) 
+        {
+            double price = p.getBasePrice();
+            if (u.isPremium() && d.after(seasonStart) && d.before(seasonEnd)) 
+            {
+                price *= 0.85;
+            }
+            if (p.getCategory().equals("CLEARANCE")) 
+            {
+                price *= u.getLoyaltyYears() > 2 ? 0.70 : 0.80;
+            }
+            return Math.round(price * (1 + TAX_RATE) * 100.0) / 100.0;
+        }
+    }
+}
