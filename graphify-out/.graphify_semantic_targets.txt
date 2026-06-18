@@ -1,0 +1,9 @@
+C:\source\github\webapp-mvc-demo-travel\.github\copilot-instructions.md
+C:\source\github\webapp-mvc-demo-travel\CONTRIBUTING.md
+C:\source\github\webapp-mvc-demo-travel\README.md
+C:\source\github\webapp-mvc-demo-travel\SECURITY.md
+C:\source\github\webapp-mvc-demo-travel\docs\architecture.md
+C:\source\github\webapp-mvc-demo-travel\docs\coding-guidelines.md
+C:\source\github\webapp-mvc-demo-travel\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\source\github\webapp-mvc-demo-travel\wwwroot\lib\jquery-validation\LICENSE.md
+C:\source\github\webapp-mvc-demo-travel\wwwroot\lib\jquery\LICENSE.txt

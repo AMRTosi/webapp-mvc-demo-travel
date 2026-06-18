@@ -1,0 +1,197 @@
+{
+  "C:\\source\\github\\webapp-mvc-demo-travel\\.vscode\\mcp.json": {
+    "mtime": 1765647235.7523706,
+    "ast_hash": "e715cc621764a90d251ec564721df5d0",
+    "semantic_hash": "e715cc621764a90d251ec564721df5d0"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Controllers\\FlightsController.cs": {
+    "mtime": 1780031928.4360056,
+    "ast_hash": "6dee05cda11b028b3af0fcfd7ce83ee1",
+    "semantic_hash": "6dee05cda11b028b3af0fcfd7ce83ee1"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Controllers\\HomeController.cs": {
+    "mtime": 1765621192.031474,
+    "ast_hash": "17c93c88e06b4547cfe9f4bb7ecf3b78",
+    "semantic_hash": "17c93c88e06b4547cfe9f4bb7ecf3b78"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Data\\airports.json": {
+    "mtime": 1769010747.7076244,
+    "ast_hash": "4f5bad57df6a9d3554ff80ff6f5f4596",
+    "semantic_hash": "4f5bad57df6a9d3554ff80ff6f5f4596"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Data\\flights.json": {
+    "mtime": 1780034573.3219483,
+    "ast_hash": "b6fb5457235bb49e662290fb1b7402e1",
+    "semantic_hash": "b6fb5457235bb49e662290fb1b7402e1"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Models\\ErrorViewModel.cs": {
+    "mtime": 1765621192.0669942,
+    "ast_hash": "25b805c0fd758174403c70668ac1faf9",
+    "semantic_hash": "25b805c0fd758174403c70668ac1faf9"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Models\\FlightModels.cs": {
+    "mtime": 1765621192.0669942,
+    "ast_hash": "ba78195aff2620e93831cdca84e0316a",
+    "semantic_hash": "ba78195aff2620e93831cdca84e0316a"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Program.cs": {
+    "mtime": 1765621192.0794718,
+    "ast_hash": "45994fde141492257d144434e1af8c43",
+    "semantic_hash": "45994fde141492257d144434e1af8c43"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Properties\\launchSettings.json": {
+    "mtime": 1765621192.09901,
+    "ast_hash": "96d9e5a097cf009a7ae61b2fda66b919",
+    "semantic_hash": "96d9e5a097cf009a7ae61b2fda66b919"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Repositories\\AirportRepository.cs": {
+    "mtime": 1765621192.1110852,
+    "ast_hash": "ece7c112fca7c8219e15c517c8fc6804",
+    "semantic_hash": "ece7c112fca7c8219e15c517c8fc6804"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Repositories\\FlightRepository.cs": {
+    "mtime": 1765621192.1270988,
+    "ast_hash": "0623a86621fceba4e035943164a4e3a2",
+    "semantic_hash": "0623a86621fceba4e035943164a4e3a2"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Repositories\\Interfaces\\IAirportRepository.cs": {
+    "mtime": 1765621192.1452055,
+    "ast_hash": "50401b31d57ddebb48a1e73e3945998d",
+    "semantic_hash": "50401b31d57ddebb48a1e73e3945998d"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Repositories\\Interfaces\\IFlightRepository.cs": {
+    "mtime": 1765621192.1472123,
+    "ast_hash": "1d0fa4f7cf1a3540da8d7197200bc583",
+    "semantic_hash": "1d0fa4f7cf1a3540da8d7197200bc583"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Services\\Interfaces\\IJsonDataService.cs": {
+    "mtime": 1765621192.175169,
+    "ast_hash": "dadc49df3614d60c59f71d5a176f6cc3",
+    "semantic_hash": "dadc49df3614d60c59f71d5a176f6cc3"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Services\\JsonDataService.cs": {
+    "mtime": 1765621192.1591458,
+    "ast_hash": "26780dec1af7e9fd654ccf18147ba604",
+    "semantic_hash": "26780dec1af7e9fd654ccf18147ba604"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\TravelSearchApp.csproj": {
+    "mtime": 1780033814.170955,
+    "ast_hash": "964ddacf24cbe245b21bc88c2639268a",
+    "semantic_hash": "964ddacf24cbe245b21bc88c2639268a"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Flights\\Details.cshtml": {
+    "mtime": 1765621192.2371309,
+    "ast_hash": "66685e462c0d8ab9946f1c47864277ff",
+    "semantic_hash": "66685e462c0d8ab9946f1c47864277ff"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Flights\\Results.cshtml": {
+    "mtime": 1765621192.2451313,
+    "ast_hash": "11d8135577f252e9cdffb93fdb788a5f",
+    "semantic_hash": "11d8135577f252e9cdffb93fdb788a5f"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Flights\\Search.cshtml": {
+    "mtime": 1765621192.2476795,
+    "ast_hash": "d418decc42582dfba0c0f55b52d02c6e",
+    "semantic_hash": "d418decc42582dfba0c0f55b52d02c6e"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Home\\Index.cshtml": {
+    "mtime": 1765621192.2679987,
+    "ast_hash": "3f43284d016df67aaf38ea1241cd0ce4",
+    "semantic_hash": "3f43284d016df67aaf38ea1241cd0ce4"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Home\\Privacy.cshtml": {
+    "mtime": 1765621192.2787452,
+    "ast_hash": "6ac68e2b0d9ab26bd02a905a365a2bcc",
+    "semantic_hash": "6ac68e2b0d9ab26bd02a905a365a2bcc"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Shared\\Error.cshtml": {
+    "mtime": 1765621192.2947073,
+    "ast_hash": "939096be653d41fb8a147fb4ff36bfb5",
+    "semantic_hash": "939096be653d41fb8a147fb4ff36bfb5"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Shared\\_Layout.cshtml": {
+    "mtime": 1765621192.2947073,
+    "ast_hash": "83a81c13aa6ca07d09b2e110358459c5",
+    "semantic_hash": "83a81c13aa6ca07d09b2e110358459c5"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\Shared\\_ValidationScriptsPartial.cshtml": {
+    "mtime": 1765621192.3267636,
+    "ast_hash": "e44d1ba7aa6fc476b40834e79a00fd81",
+    "semantic_hash": "e44d1ba7aa6fc476b40834e79a00fd81"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\_ViewImports.cshtml": {
+    "mtime": 1765621192.2069578,
+    "ast_hash": "68b936e9f15fe62530c63927a531b0ca",
+    "semantic_hash": "68b936e9f15fe62530c63927a531b0ca"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\Views\\_ViewStart.cshtml": {
+    "mtime": 1765621192.2213008,
+    "ast_hash": "e4cd881cf745e1e88cf2c5f6eceae943",
+    "semantic_hash": "e4cd881cf745e1e88cf2c5f6eceae943"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\appsettings.Development.json": {
+    "mtime": 1765621192.3267636,
+    "ast_hash": "804b473502a4c415cf75db61c56c32aa",
+    "semantic_hash": "804b473502a4c415cf75db61c56c32aa"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\appsettings.json": {
+    "mtime": 1765621192.3427992,
+    "ast_hash": "f7e65dde4e5533740a0d57ac9355c0e8",
+    "semantic_hash": "f7e65dde4e5533740a0d57ac9355c0e8"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\webapp-mvc-demo-travel.sln": {
+    "mtime": 1765621192.3427992,
+    "ast_hash": "cc5e2e9a338e0a7ab0f28de906f61973",
+    "semantic_hash": "cc5e2e9a338e0a7ab0f28de906f61973"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\wwwroot\\js\\site.js": {
+    "mtime": 1765621192.3906496,
+    "ast_hash": "53e309eeca51b3b6de20c4d24e1b2b63",
+    "semantic_hash": "53e309eeca51b3b6de20c4d24e1b2b63"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\.github\\copilot-instructions.md": {
+    "mtime": 1781768888.7807648,
+    "ast_hash": "2b23503628bf2ec71d067a85ca8948ab",
+    "semantic_hash": "2b23503628bf2ec71d067a85ca8948ab"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\CONTRIBUTING.md": {
+    "mtime": 1765649122.6221044,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\README.md": {
+    "mtime": 1765621192.10543,
+    "ast_hash": "220d84566fed432d937dba4465e4f4c1",
+    "semantic_hash": "220d84566fed432d937dba4465e4f4c1"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\SECURITY.md": {
+    "mtime": 1765649066.8820012,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\docs\\architecture.md": {
+    "mtime": 1765649994.211498,
+    "ast_hash": "eb70090d5a8b3800d9c8c076500a8d1f",
+    "semantic_hash": "eb70090d5a8b3800d9c8c076500a8d1f"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\docs\\coding-guidelines.md": {
+    "mtime": 1765649988.2761178,
+    "ast_hash": "c0a2ab04f03910ac68218911e26fb82a",
+    "semantic_hash": "c0a2ab04f03910ac68218911e26fb82a"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt": {
+    "mtime": 1765621192.9103332,
+    "ast_hash": "ba2bed45d99b13d4c31485d0631ae675",
+    "semantic_hash": "ba2bed45d99b13d4c31485d0631ae675"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\wwwroot\\lib\\jquery-validation\\LICENSE.md": {
+    "mtime": 1765621192.945769,
+    "ast_hash": "41ef1b919db5e3aeaf47308518e7bcee",
+    "semantic_hash": "41ef1b919db5e3aeaf47308518e7bcee"
+  },
+  "C:\\source\\github\\webapp-mvc-demo-travel\\wwwroot\\lib\\jquery\\LICENSE.txt": {
+    "mtime": 1765621193.0250578,
+    "ast_hash": "f661402a551136dbe74282edc5bea28d",
+    "semantic_hash": "f661402a551136dbe74282edc5bea28d"
+  }
+}
